@@ -16,13 +16,13 @@ class SemVerConverter
 
         if($baseConstraint instanceof MultiConstraint)
         {
-            $result = [];
+            $hasOr = strpos($baseConstraint->__toString(), '||') !== false;
 
             $constraints = $baseConstraint->getConstraints();
 
-            if(count($constraints) === 2)
+            if($hasOr == false && count($constraints) == 2)
             {
-                $result = [ $this->convertFromConstraints($constraints[0], $constraints[1]) ];
+                $result[] = $this->convertFromConstraints($constraints[0], $constraints[1]);
             }
             else
             {
@@ -86,6 +86,9 @@ class SemVerConverter
             if($from[1] == '=' || $from[1] == '==')
             {
                 $to = $from;
+
+                $to[1]   = '=';
+                $from[1] = '=';
             }
 
             if($from[1] == '>' || $from[1] == '>=')
