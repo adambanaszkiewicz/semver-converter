@@ -8,7 +8,7 @@ Converter accepts the same versions as Composer, so You can use it with any pack
 
 For each version it uses Composer SemVer parser to parse version and normalize it. And then, for each version, converter creates array exploded by dot values. Each value multiply by 100 and create from it long string which is converted to integer. And for each version we have big integer.
 
-#### Sample:
+### Sample:
 
 1. Version **1.0.5**
 2. Normalize with SevVer: **1.0.5.0**
@@ -77,6 +77,35 @@ array (size=1)
       'to' => 
         array (size=2)
           0 => int 200000000000
+          1 => string '<' (length=1)
+```
+
+### Version or
+
+```php
+$result = (new SemVerConverter)->convert('^1.9 || 3.0.*');
+
+// Result
+array (size=2)
+  0 => 
+    array (size=2)
+      'from' => 
+        array (size=2)
+          0 => int 100900000000
+          1 => string '>=' (length=2)
+      'to' => 
+        array (size=2)
+          0 => int 200000000000
+          1 => string '<' (length=1)
+  1 => 
+    array (size=2)
+      'from' => 
+        array (size=2)
+          0 => int 300000000000
+          1 => string '>=' (length=2)
+      'to' => 
+        array (size=2)
+          0 => int 300100000000
           1 => string '<' (length=1)
 ```
 
