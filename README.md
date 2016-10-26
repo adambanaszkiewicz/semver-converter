@@ -11,13 +11,13 @@ For each version it uses Composer SemVer parser to parse version and normalize i
 ### Sample:
 
 1. Version **1.0.5**
-2. Normalize with SevVer: **1.0.5.0**
-3. Explode: **[ 1, 0, 5, 0 ]**
-4. Converts to strings and pad zeros: **[ '100', '000', '500', '000' ]**
-5. Concatenate all strings: **'100' + '000' + '500' + '000'**
-6. Converts to integer: **(int) '100000500000'**
+2. Normalize with SemVer: **1.0.5**
+3. Explode: **[ 1, 0, 5 ]**
+4. Converts to strings and pad zeros: **[ '100', '000', '500' ]**
+5. Concatenate all strings: **'100' + '000' + '500'**
+6. Converts to integer: **(int) '100000500'**
 
-Result: **'1.0.5' == 100000500000**
+Result: **'1.0.5' == 100000500**
 
 # Examples
 
@@ -106,6 +106,20 @@ array (size=2)
           0 => int 300100000000
           1 => string '<' (length=1)
 ```
+
+# Settings
+
+```php
+new SemVerConverter($zeros, $sections);
+```
+
+### $zeros
+
+Defines how meny zeros need to pad for each section of versions. It allows to define how long should be result.
+
+### $sections
+
+Defines how many sections need to be generated from input. Default is 3, Composer SemVer generates 4. This also have an impact for result.
 
 # Licence
 
