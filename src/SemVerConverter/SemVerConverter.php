@@ -1,4 +1,15 @@
 <?php
+/**
+ * This file is part of the Atline templating system package.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Copyright (c) 2015 - 2016 by Adam Banaszkiewicz
+ *
+ * @license   MIT License
+ * @copyright Copyright (c) 2015 - 2016, Adam Banaszkiewicz
+ * @link      https://github.com/requtize/atline
+ */
 
 namespace Requtize\SemVerConverter;
 
@@ -6,8 +17,33 @@ use Composer\Semver\VersionParser;
 use Composer\Semver\Constraint\Constraint;
 use Composer\Semver\Constraint\MultiConstraint;
 
+/**
+ * Converts SemVer version (like Composer packages) into integer version with operators.
+ * Helps managing versions: store, compare, sort and retrive by conditions.
+ *
+ * @author Adam Banaszkiewicz https://github.com/requtize
+ */
 class SemVerConverter
 {
+    /**
+     * How many zeros need to pad?
+     * @var integer
+     */
+    protected $zeros = 3;
+
+    /**
+     * How many sections want to generate?
+     * Composer SemVer generates 4 by default.
+     * @var integer
+     */
+    protected $sections = 3;
+
+    public function __construct($zeros = 3, $sections = 3)
+    {
+        $this->zeros    = $zeros;
+        $this->sections = $sections;
+    }
+
     public function convert($version)
     {
         $result = [];
@@ -58,9 +94,27 @@ class SemVerConverter
         // Explode every section
         $sections = explode('.', $version);
 
-        // Multiply every section by 100
+        // If there is more sections that we need, we remove last ones
+        // to shorts array.
+        if(count($sections) > $this->sections)
+        {
+            list($sections) = array_chunk($sections, $this->sections);
+        }
+        // Otherwise we add as many as we need.
+        else
+        {
+            while(count($sections) < $this->sections)
+            {
+                $sections[] = 0;
+            }
+        }
+
+        // Pad every section with zeros
         $sections = array_map(function ($val) {
-            return str_pad($val, 3, 0);
+            // If any section is longer than padding zeros, we remove last numbers.
+            $val = strlen($val) > $this->zeros ? substr($val, 0, $this->zeros) : $val;
+
+            return str_pad($val, $this->zeros, 0);
         }, $sections);
 
         $result = '';
