@@ -6,18 +6,17 @@ Converter accepts the same versions as Composer, so You can use it with any pack
 
 # How it works?
 
-For each version it uses Composer SemVer parser to parse version and normalize it. And then, for each version, converter creates array exploded by dot values. Each value multiply by 100 and create from it long string which is converted to integer. And for each version we have big integer.
+For each version it uses Composer SemVer parser to parse version and normalize it. And then, for each version, converter creates array exploded by dot values. Each value pads with zeros and create from it long string which is converted to integer. And for each version we have big integer.
 
 ### Sample:
 
 1. Version **1.0.5**
 2. Normalize with SevVer: **1.0.5.0**
 3. Explode: **[ 1, 0, 5, 0 ]**
-4. Multiply: **[ 100, 0, 500, 0 ]**
-5. Converts to strings: **[ '100', '0', '500', '0' ]**
-6. Relpace '0' with '000': **[ '100', '000', '500', '000' ]**
-7. Concatenate all strings: **'100' + '000' + '500' + '000'**
-8. Converts to integer: **(int) '100000500000'**
+4. Converts to strings and pad zeros: **[ '100', '000', '500', '000' ]**
+5. Relpace '0' with '000': **[ '100', '000', '500', '000' ]**
+6. Concatenate all strings: **'100' + '000' + '500' + '000'**
+7. Converts to integer: **(int) '100000500000'**
 
 Result: **'1.0.5' == 100000500000**
 
