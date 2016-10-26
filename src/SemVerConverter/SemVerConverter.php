@@ -60,7 +60,7 @@ class SemVerConverter
 
         // Multiply every section by 100
         $sections = array_map(function ($val) {
-            return $val * 100;
+            return str_pad($val, 3, 0);
         }, $sections);
 
         $result = '';
