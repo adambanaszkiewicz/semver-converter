@@ -51,11 +51,11 @@ array (size=1)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100300000000
+          0 => int 100300000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 100700000000
+          0 => int 100700000
           1 => string '<' (length=1)
 ```
 
@@ -70,11 +70,11 @@ array (size=1)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100300000000
+          0 => int 100300000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 200000000000
+          0 => int 200000000
           1 => string '<' (length=1)
 ```
 
@@ -89,21 +89,21 @@ array (size=2)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100900000000
+          0 => int 100900000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 200000000000
+          0 => int 200000000
           1 => string '<' (length=1)
   1 => 
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 300000000000
+          0 => int 300000000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 300100000000
+          0 => int 300100000
           1 => string '<' (length=1)
 ```
 
