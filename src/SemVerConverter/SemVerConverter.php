@@ -67,7 +67,7 @@ class SemVerConverter
 
         foreach($sections as $section)
         {
-            $result .= $section == 0 ? '000' : $section;
+            $result .= $section;
         }
 
         return [ (int) $result, $operator ];
