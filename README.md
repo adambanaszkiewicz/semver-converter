@@ -14,9 +14,8 @@ For each version it uses Composer SemVer parser to parse version and normalize i
 2. Normalize with SevVer: **1.0.5.0**
 3. Explode: **[ 1, 0, 5, 0 ]**
 4. Converts to strings and pad zeros: **[ '100', '000', '500', '000' ]**
-5. Relpace '0' with '000': **[ '100', '000', '500', '000' ]**
-6. Concatenate all strings: **'100' + '000' + '500' + '000'**
-7. Converts to integer: **(int) '100000500000'**
+5. Concatenate all strings: **'100' + '000' + '500' + '000'**
+6. Converts to integer: **(int) '100000500000'**
 
 Result: **'1.0.5' == 100000500000**
 
