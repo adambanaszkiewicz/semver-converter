@@ -4,6 +4,7 @@
     "version": "0.2.0",
     "keywords": [ "semver", "semantic version", "converter", "php", "semver converter", "semver to int", "semver to integer" ],
     "description": "Converts SemVer version (like Composer packages) into integer version with operators. Helps managing versions: store, compare, sort and retrive by conditions.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Adam Banaszkiewicz",
