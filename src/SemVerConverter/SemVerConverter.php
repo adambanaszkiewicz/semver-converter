@@ -4,15 +4,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Copyright (c) 2015 - 2016 by Adam Banaszkiewicz
+ * Copyright (c) 2015 - 2017 by Adam Banaszkiewicz
  *
  * @license   MIT License
- * @copyright Copyright (c) 2015 - 2016, Adam Banaszkiewicz
+ * @copyright Copyright (c) 2015 - 2017, Adam Banaszkiewicz
  * @link      https://github.com/requtize/atline
  */
 
 namespace Requtize\SemVerConverter;
 
+use RuntimeException;
 use Composer\Semver\VersionParser;
 use Composer\Semver\Constraint\Constraint;
 use Composer\Semver\Constraint\MultiConstraint;
@@ -81,6 +82,59 @@ class SemVerConverter
         }
 
         return $result;
+    }
+
+    /**
+     * Decodes one version from SemVer to Big Integer.
+     */
+    public function decode($version)
+    {
+        $constraint = (new VersionParser)->parseConstraints($version);
+
+        if(! $constraint instanceof Constraint)
+        {
+            throw new RuntimeException('This method decodes only one verb version.');
+        }
+
+        $version = $this->convertVersion($constraint);
+
+        return $version[0];
+    }
+
+    /**
+     * Encodes version from Big integer to SemVer.
+     */
+    public function encode($version)
+    {
+        $version  = (string) $version;
+        $numbers  = array_reverse(str_split($version));
+        $sections = array_chunk($numbers, $this->sections);
+        $sections = array_reverse($sections);
+        $sections = array_map('array_reverse', $sections);
+
+        foreach($sections as $k1 => $digits)
+        {
+            foreach($digits as $k2 => $digit)
+            {
+                if($digit == '0')
+                {
+                    unset($sections[$k1][$k2]);
+                }
+            }
+
+            if($sections[$k1] === [])
+                unset($sections[$k1]);
+            else
+                $sections[$k1] = implode($sections[$k1]);
+        }
+
+        if($sections === [])
+            for($i = 0; $i < $this->sections; $i++)
+                $sections[$i] = 0;
+
+        $version = implode('.', $sections);
+
+        return $version;
     }
 
     public function convertVersion(Constraint $version)
