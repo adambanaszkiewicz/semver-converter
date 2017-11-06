@@ -123,14 +123,27 @@ class SemVerConverter
             }
 
             if($sections[$k1] === [])
-                unset($sections[$k1]);
+                $sections[$k1] = 0;
             else
                 $sections[$k1] = implode($sections[$k1]);
         }
 
-        if($sections === [])
+        $count = count($sections);
+
+        if($count === 0)
+        {
             for($i = 0; $i < $this->sections; $i++)
                 $sections[$i] = 0;
+        }
+        if($count === 1)
+        {
+            array_unshift($sections, 0);
+            array_unshift($sections, 0);
+        }
+        if($count === 2)
+        {
+            array_unshift($sections, 0);
+        }
 
         $version = implode('.', $sections);
 
@@ -147,6 +160,11 @@ class SemVerConverter
 
         // Explode every section
         $sections = explode('.', $version);
+
+        // Remove leading zeros if exists.
+        $sections = array_map(function ($val) {
+            return (int) $val;
+        }, $sections);
 
         // If there is more sections that we need, we remove last ones
         // to shorts array.
