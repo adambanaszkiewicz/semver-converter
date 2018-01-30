@@ -1,7 +1,7 @@
 {
     "name": "requtize/semver-converter",
     "type": "library",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "keywords": [ "semver", "semantic version", "converter", "php", "semver converter", "semver to int", "semver to integer" ],
     "description": "Converts SemVer version (like Composer packages) into integer version with operators. Helps managing versions: store, compare, sort and retrive by conditions.",
     "license": "MIT",
@@ -14,10 +14,7 @@
     ],
     "require": {
         "php": "~5.5 || ^7.0",
-        "composer/composer": "1.1.*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.6"
+        "composer/composer": "~1.1"
     },
     "autoload": {
         "psr-4": { "Requtize\\SemVerConverter\\": "src/SemVerConverter/" }
