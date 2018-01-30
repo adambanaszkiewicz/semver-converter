@@ -4,10 +4,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Copyright (c) 2015 - 2017 by Adam Banaszkiewicz
+ * Copyright (c) 2015 - 2018 by Adam Banaszkiewicz
  *
  * @license   MIT License
- * @copyright Copyright (c) 2015 - 2017, Adam Banaszkiewicz
+ * @copyright Copyright (c) 2015 - 2018, Adam Banaszkiewicz
  * @link      https://github.com/requtize/atline
  */
 
