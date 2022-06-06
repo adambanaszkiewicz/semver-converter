@@ -13,11 +13,11 @@ For each version it uses Composer SemVer parser to parse version and normalize i
 1. Version **1.0.5**
 2. Normalize with SemVer: **1.0.5**
 3. Explode: **[ 1, 0, 5 ]**
-4. Converts to strings and pad zeros: **[ '100', '000', '500' ]**
-5. Concatenate all strings: **'100' + '000' + '500'**
-6. Converts to integer: **(int) '100000500'**
+4. Converts to strings and pad zeros: **[ '001', '000', '005' ]**
+5. Concatenate all strings: **'001' + '000' + '005'**
+6. Converts to integer: **(int) '1000005'**
 
-Result: **'1.0.5' == 100000500**
+Result: **'1.0.5' == 1000005**
 
 # Examples
 
@@ -32,11 +32,11 @@ array (size=1)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100000000
+          0 => int 1000000
           1 => string '==' (length=2)
       'to' => 
         array (size=2)
-          0 => int 100000000
+          0 => int 1000000
           1 => string '==' (length=2)
 ```
 
@@ -51,11 +51,11 @@ array (size=1)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100300000
+          0 => int 1003000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 100700000
+          0 => int 1007000
           1 => string '<' (length=1)
 ```
 
@@ -70,11 +70,11 @@ array (size=1)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100300000
+          0 => int 1003000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 200000000
+          0 => int 2000000
           1 => string '<' (length=1)
 ```
 
@@ -89,21 +89,21 @@ array (size=2)
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 100900000
+          0 => int 1009000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 200000000
+          0 => int 2000000
           1 => string '<' (length=1)
   1 => 
     array (size=2)
       'from' => 
         array (size=2)
-          0 => int 300000000
+          0 => int 3000000
           1 => string '>=' (length=2)
       'to' => 
         array (size=2)
-          0 => int 300100000
+          0 => int 3001000
           1 => string '<' (length=1)
 ```
 
