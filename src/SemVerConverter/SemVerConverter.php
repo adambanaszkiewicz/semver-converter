@@ -186,7 +186,7 @@ class SemVerConverter
             // If any section is longer than padding zeros, we remove last numbers.
             $val = strlen($val) > $this->zeros ? substr($val, 0, $this->zeros) : $val;
 
-            return str_pad($val, $this->zeros, 0);
+            return str_pad($val, $this->zeros, 0, STR_PAD_LEFT);
         }, $sections);
 
         $result = '';
