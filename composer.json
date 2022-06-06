@@ -17,5 +17,8 @@
     },
     "autoload": {
         "psr-4": { "Requtize\\SemVerConverter\\": "src/SemVerConverter/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }
