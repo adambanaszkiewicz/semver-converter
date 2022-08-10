@@ -2,12 +2,12 @@
 
 use Requtize\SemVerConverter\SemVerConverter;
 
-class SemVerConverterTest extends PHPUnit_Framework_TestCase
+class SemVerConverterTest extends \PHPUnit\Framework\TestCase
 {
     public function testConvertSimple()
     {
         $result = (new SemVerConverter)->convert('1.2.3');
-        $this->assertEquals('100200300', $result[0]['from'][0]);
+        $this->assertEquals('1002003', $result[0]['from'][0]);
     }
 
     public function testConvertZeros()
@@ -25,16 +25,16 @@ class SemVerConverterTest extends PHPUnit_Framework_TestCase
     public function testConvertPatch()
     {
         $result = (new SemVerConverter)->convert('0.0.1');
-        $this->assertEquals('100', $result[0]['from'][0]);
+        $this->assertEquals('1', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.0.01');
-        $this->assertEquals('100', $result[0]['from'][0]);
+        $this->assertEquals('1', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.0.001');
-        $this->assertEquals('100', $result[0]['from'][0]);
+        $this->assertEquals('1', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('0.0.12');
-        $this->assertEquals('120', $result[0]['from'][0]);
+        $this->assertEquals('12', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.0.012');
-        $this->assertEquals('120', $result[0]['from'][0]);
+        $this->assertEquals('12', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('0.0.123');
         $this->assertEquals('123', $result[0]['from'][0]);
@@ -43,16 +43,16 @@ class SemVerConverterTest extends PHPUnit_Framework_TestCase
     public function testConvertMinor()
     {
         $result = (new SemVerConverter)->convert('0.1.0');
-        $this->assertEquals('100000', $result[0]['from'][0]);
+        $this->assertEquals('1000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.01.0');
-        $this->assertEquals('100000', $result[0]['from'][0]);
+        $this->assertEquals('1000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.001.0');
-        $this->assertEquals('100000', $result[0]['from'][0]);
+        $this->assertEquals('1000', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('0.12.0');
-        $this->assertEquals('120000', $result[0]['from'][0]);
+        $this->assertEquals('12000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('0.012.0');
-        $this->assertEquals('120000', $result[0]['from'][0]);
+        $this->assertEquals('12000', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('0.123.0');
         $this->assertEquals('123000', $result[0]['from'][0]);
@@ -61,16 +61,16 @@ class SemVerConverterTest extends PHPUnit_Framework_TestCase
     public function testConvertMajor()
     {
         $result = (new SemVerConverter)->convert('1.0.0');
-        $this->assertEquals('100000000', $result[0]['from'][0]);
+        $this->assertEquals('1000000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('01.0.0');
-        $this->assertEquals('100000000', $result[0]['from'][0]);
+        $this->assertEquals('1000000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('001.0.0');
-        $this->assertEquals('100000000', $result[0]['from'][0]);
+        $this->assertEquals('1000000', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('12.0.0');
-        $this->assertEquals('120000000', $result[0]['from'][0]);
+        $this->assertEquals('12000000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('012.0.0');
-        $this->assertEquals('120000000', $result[0]['from'][0]);
+        $this->assertEquals('12000000', $result[0]['from'][0]);
 
         $result = (new SemVerConverter)->convert('123.0.0');
         $this->assertEquals('123000000', $result[0]['from'][0]);
@@ -79,9 +79,9 @@ class SemVerConverterTest extends PHPUnit_Framework_TestCase
     public function testConvertTwoSegments()
     {
         $result = (new SemVerConverter)->convert('1.2');
-        $this->assertEquals('100200000', $result[0]['from'][0]);
+        $this->assertEquals('1002000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('11.22');
-        $this->assertEquals('110220000', $result[0]['from'][0]);
+        $this->assertEquals('11022000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('111.222');
         $this->assertEquals('111222000', $result[0]['from'][0]);
     }
@@ -89,9 +89,9 @@ class SemVerConverterTest extends PHPUnit_Framework_TestCase
     public function testConvertOneSegment()
     {
         $result = (new SemVerConverter)->convert('1');
-        $this->assertEquals('100000000', $result[0]['from'][0]);
+        $this->assertEquals('1000000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('11');
-        $this->assertEquals('110000000', $result[0]['from'][0]);
+        $this->assertEquals('11000000', $result[0]['from'][0]);
         $result = (new SemVerConverter)->convert('111');
         $this->assertEquals('111000000', $result[0]['from'][0]);
     }

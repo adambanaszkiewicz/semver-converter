@@ -39,10 +39,17 @@ class SemVerConverter
      */
     protected $sections = 3;
 
-    public function __construct($zeros = 3, $sections = 3)
+    /**
+     * Which side to pad numbers from.
+     * @var int
+     */
+    protected $paddingDirection = STR_PAD_LEFT;
+
+    public function __construct($zeros = 3, $sections = 3, $paddingDirection = STR_PAD_LEFT)
     {
         $this->zeros    = $zeros;
         $this->sections = $sections;
+        $this->paddingDirection = $paddingDirection;
     }
 
     public function convert($version)
@@ -186,7 +193,7 @@ class SemVerConverter
             // If any section is longer than padding zeros, we remove last numbers.
             $val = strlen($val) > $this->zeros ? substr($val, 0, $this->zeros) : $val;
 
-            return str_pad($val, $this->zeros, 0);
+            return str_pad($val, $this->zeros, 0, $this->paddingDirection);
         }, $sections);
 
         $result = '';
