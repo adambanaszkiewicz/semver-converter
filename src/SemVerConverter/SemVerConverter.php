@@ -113,48 +113,27 @@ class SemVerConverter
      */
     public function encode($version)
     {
-        $version  = (string) $version;
-        $numbers  = array_reverse(str_split($version));
-        $sections = array_chunk($numbers, $this->sections);
-        $sections = array_reverse($sections);
-        $sections = array_map('array_reverse', $sections);
+        $version = (string) $version;
 
-        foreach($sections as $k1 => $digits)
-        {
-            foreach($digits as $k2 => $digit)
-            {
-                if($digit == '0')
-                {
-                    unset($sections[$k1][$k2]);
-                }
-            }
+        $sections = array_reverse(
+            array_chunk(
+                array_reverse(str_split($version)),
+                $this->sections
+            )
+        );
 
-            if($sections[$k1] === [])
-                $sections[$k1] = 0;
-            else
-                $sections[$k1] = implode($sections[$k1]);
+        $sections = array_map(
+            static function ($digits) {
+                return (string) (int) implode('', array_reverse($digits));
+            },
+            $sections
+        );
+
+        while (count($sections) < 3) {
+            array_unshift($sections, '0');
         }
 
-        $count = count($sections);
-
-        if($count === 0)
-        {
-            for($i = 0; $i < $this->sections; $i++)
-                $sections[$i] = 0;
-        }
-        if($count === 1)
-        {
-            array_unshift($sections, 0);
-            array_unshift($sections, 0);
-        }
-        if($count === 2)
-        {
-            array_unshift($sections, 0);
-        }
-
-        $version = implode('.', $sections);
-
-        return $version;
+        return implode('.', $sections);
     }
 
     public function convertVersion(Constraint $version)
